@@ -1,0 +1,61 @@
+name: newsapp
+description: Flutter News Application.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  http: ^0.12.0+4
+  connectivity: ^0.4.8+2
+  # these two packages is to cache news and image
+  cached_network_image: ^2.1.0+1
+  shared_preferences: ^0.5.6+3
+  # these two packages is to convert date time to any format u want
+  timeago: ^2.0.26
+  jiffy: ^3.0.1
+  # these two package work well together because it has Image Type Widget with fallback Image, use GfCard from getflutter
+  getflutter: ^1.0.11
+  flutter_advanced_networkimage: ^0.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - asset/images/menu.png
+    - asset/images/no_image.jpg
+
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: NotoSansTCBold
+      fonts:
+        - asset: asset/fonts/NotoSansTC-Bold.otf
+    - family: Oxygen
+      fonts:
+        - asset: asset/fonts/Oxygen-Regular.ttf
+    - family: SourceSansPro
+      fonts:
+        - asset: asset/fonts/SourceSansPro-Regular.ttf
+    - family: SourceSansProSemiBold
+      fonts:
+        - asset: asset/fonts/SourceSansPro-SemiBold.ttf
+    - family: SourceSansProBold
+      fonts:
+        - asset: asset/fonts/SourceSansPro-Bold.ttf
