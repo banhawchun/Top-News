@@ -2,8 +2,8 @@
 
 News App that pull news from Newsapi.org
 
-![Top News Screen](https://github.com/banhawchun/Images/blob/master/Top_News/Top_news1.png){:height="300px" width="400px"}
+<img src="https://github.com/banhawchun/Images/blob/master/Top_News/Top_news1.png" width="400">
 
-![Top News Screen](https://github.com/banhawchun/Images/blob/master/Top_News/Top_news2.png)
+<img src="https://github.com/banhawchun/Images/blob/master/Top_News/Top_news2.png" width="400">
 
-![Top News Screen](https://github.com/banhawchun/Images/blob/master/Top_News/Top_news3.png)
+<img src="https://github.com/banhawchun/Images/blob/master/Top_News/Top_news3.png" width="400">
