@@ -2,13 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/colors/gf_color.dart';
-import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:newsapp/helper/news_api.dart';
 import 'package:newsapp/utility/constant.dart';
 import 'package:newsapp/utility/news_card.dart';
-import 'package:newsapp/utility/news_content.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class DetailPage extends StatefulWidget {
   final Article article;
@@ -215,42 +212,43 @@ class _DetailPageState extends State<DetailPage> with AutomaticKeepAliveClientMi
                   ),
                 ),
 
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 50, bottom: 10),
+                  child: Text(
+                    'You Might Also Like',
+                    style: kNewsDetailSuggestArticleTextStyle,
+                  ),
+                ),
+                // Suggested Article
+                Container(
+                  color: Colors.grey[200],
+                  height: 350,
+                  child: FutureBuilder<NewsApi>(
+                    future: getNewsDataByCategory(cacheName: 'cacheDetail', category: 'general'),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError)
+                        return Center(
+                          child: Text('Something went wrong!'),
+                        );
+                      else {
+                        if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          return _buildListView(snapshot.data.articles);
+                        } else {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: 5,),
               ],
             ),
             padding: EdgeInsets.all(10),
           ),
           // You Might Also Like
-          Padding(
-            padding: const EdgeInsets.only(left: 17, top: 50, bottom: 10),
-            child: Text(
-              'You Might Also Like',
-              style: kNewsDetailSuggestArticleTextStyle,
-            ),
-          ),
-          // Suggested Article
-          Container(
-            color: Colors.grey[200],
-            height: 300,
-            child: FutureBuilder<NewsApi>(
-              future: getNewsDataByCategory(cacheName: 'cacheDetail', category: 'general'),
-              builder: (context, snapshot) {
-                if (snapshot.hasError)
-                  return Center(
-                    child: Text('Something went wrong!'),
-                  );
-                else {
-                  if (snapshot.connectionState ==
-                      ConnectionState.done) {
-                    return _buildListView(snapshot.data.articles);
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                }
-              },
-            ),
-          )
         ],
       ),
     );

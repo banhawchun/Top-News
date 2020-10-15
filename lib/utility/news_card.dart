@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:newsapp/helper/news_api.dart';
 import 'package:newsapp/page/detail_page.dart';
@@ -73,15 +72,17 @@ Widget _buildArticleTitleAndDescription(Article article, String category) {
                 ),
                 SizedBox(width: 5),
                 // Article Source's name + Date
-                Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Text(
-                    article.source.id == null
-                        ? 'Unknown - ${timeago.format(article.publishedAt)}'
-                        : '${article.source.id.toUpperCase()} - ${timeago.format(article.publishedAt)}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: kNewsSourceTextStyle,
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: Text(
+                      article.source.id == null
+                          ? 'Unknown - ${timeago.format(article.publishedAt)}'
+                          : '${article.source.id.toUpperCase()} - ${timeago.format(article.publishedAt)}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: kNewsSourceTextStyle,
+                    ),
                   ),
                 ),
               ],
@@ -297,19 +298,10 @@ kBuildListItemTopSideImg(
       width: double.infinity,
       height: 200,
       fit: BoxFit.cover,
-      image: AdvancedNetworkImage(
+      image: CachedNetworkImageProvider(
         article.urlToImage == null
             ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRs0I6bqtE68WLQwZy2wC5rrmzmFkAV1Kl0M562ywbIqYVyFv3W&usqp=CAU'
             : article.urlToImage,
-        fallbackAssetImage: 'asset/images/no_image.jpg',
-        useDiskCache: true,
-        cacheRule: CacheRule(
-          maxAge: Duration(days: 2),
-        ),
-        skipRetryStatusCode: [403, 400],
-//        loadingProgress: (double progress, List<int> a) {
-//          print('Now Loading: $progress');
-//        },
       ),
     );
   }

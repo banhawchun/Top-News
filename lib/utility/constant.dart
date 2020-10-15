@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:getflutter/getflutter.dart';
 
 // Drawer
 const kNameTextStyle = TextStyle(
